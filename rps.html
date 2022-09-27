@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <link rel="icon" type="image/png" href="Assets/icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+    
+    <style>
+      html {
+        background-color: #858585;
+      }
+
+      .button {
+        font-size: 30px;
+        font-family: "Orbitron", sans-serif; 
+				color: black;
+				text-align: center;
+				text-decoration: none;
+				background-color: #909090;
+				background-repeat: no-repeat;
+        margin-left: 50px;
+        
+      }
+
+      #rock {
+        display: block;
+        margin-top: 70px;
+      }
+
+      #paper {
+        display: block;
+        margin-top: 150px;
+      }
+
+      #scissors {
+        display: block;
+        margin-top: 150px;
+      }
+
+      .line {
+        border-left: 4px solid black;
+        height: 100vh;
+        position: absolute;
+        left: 50%;
+        margin-left: -3px;
+        top: 0;
+      }
+
+      #botChoice {
+        top: 25%;
+        right: 20%;
+        position: absolute;
+        width: 25%;
+        height: 25%;
+      }
+
+      #choice {
+        top: 25%;
+        left: 20%;
+        position: absolute;
+        width: 25%;
+        height: 25%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <button id="rock" class="button" onclick="rck()">Rock</button>
+    <button id="paper" class="button" onclick="ppr()">Paper</button>
+    <button id="scissors" class="button" onclick="szr()">Scissors</button>
+    <img id="choice">
+    <img id="botChoice">
+    <div class="line"></div>
+    
+    <script>
+      var rock = document.getElementById("rock");
+      var paper = document.getElementById("paper");
+      var scissors = document.getElementById("scissors");
+      var choice = document.getElementById("choice");
+      var botChoice = document.getElementById("botChoice");
+      var rockIMG = "Assets/rock.png";
+      var paperIMG = "Assets/paper.png";
+      var scissorsIMG = "Assets/scissors.png";
+      var abot = "";
+      var player = "";
+
+      function bot() {
+        var roll = Math.floor(Math.random() * 3);
+        if(roll == 0) {
+          botChoice.src = rockIMG;
+          abot = "rock";
+        }
+        else if(roll == 1) {
+          botChoice.src = paperIMG;
+          abot = "paper";
+        }
+        else if(roll == 2) {
+          botChoice.src = scissorsIMG;
+          abot = "scissors";
+        }
+      }
+
+      function rck() {
+        bot();
+        choice.src = rockIMG;
+        player = "rock";
+        endGame();
+      }
+      
+      function ppr() {
+        bot();
+        choice.src = paperIMG;
+        player = "paper";
+        endGame();
+      }
+      
+      function szr() {
+        bot();
+        choice.src = scissorsIMG;
+        player = "scissors";
+        endGame();
+      }
+
+      function endGame() {
+        if (abot == "rock") {
+          if (player == "rock") {
+            alert("Rock ties rock");
+          }
+          else if (player == "paper") {
+            alert("Paper beats rock\nYou Win!");
+          }
+          else if (player == "scissors") {
+            alert("Rock beats scissors\nYou lose");
+          }
+        }
+
+        else if (abot == "paper") {
+          if (player == "rock") {
+            alert("Paper beats rock\nYou lose");
+          }
+          else if (player == "paper") {
+            alert("Paper ties paper");
+          }
+          else if (player == "scissors") {
+            alert("Scissors beats paper\nYou win!");
+          }
+        }
+
+        else if (abot == "scissors") {
+          if (player == "rock") {
+            alert("Rock beats scissors\nYou Win!");
+          }
+          else if (player == "paper") {
+            alert("Scissors beat paper\nYou lose");
+          }
+          else if (player == "scissors") {
+            alert("Scissors tie scissors");
+          }
+        }
+        
+        abot = "";
+        player = "";
+      }
+    </script>
+  </body>
+</html>

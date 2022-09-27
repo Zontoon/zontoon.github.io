@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Random Color Generator</title>
+		
+		<link rel="icon" type="image/png" href="Assets/icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+		
+		<style>
+			button {
+				font-size: 200px;
+				border: none;
+				color: black;
+				text-align: center;
+				text-decoration: none;
+				background-color: Transparent;
+				background-repeat: no-repeat;
+			}
+			
+			.center {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="center">
+			<button id="btn" onclick="randColor()">.</button>
+		</div>
+		
+		<script>
+			const btn = document.getElementById('btn');
+			
+			function randColor() {
+				var color = Math.floor(Math.random()*16777215).toString(16);
+				color = '#' + color;
+				document.body.style.backgroundColor = color;
+				btn.innerHTML = color;
+			}
+			
+			randColor();
+		</script>
+	</body>
+</html>

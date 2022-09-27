@@ -1,0 +1,70 @@
+<!--PRESS B-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+    
+    <link rel="icon" type="image/png" href="Assets/icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+    
+    <style>
+      html {
+	margin: 15px;
+        font-family: "Orbitron", sans-serif;
+        background-color: #858585;
+      }
+      
+      h1 {
+        margin-bottom: 0;
+        font-size: 75px;
+        text-align: center;
+      }
+      
+      h2 {
+	margin-top: 0;
+        font-size: 45px;
+      }
+      
+      a {
+        text-decoration: none;
+        color: #4d4d4d;
+      }
+      
+      h3 {
+        font-size: 30px;
+      }
+		
+      .game {
+        float: left;
+      }
+			
+      .tool {
+	float: right;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <h1>Home</h1>
+    
+    <span class="game">
+    	<h2><u>Games</u></h2>
+	<h3><a href="Games/Clicker">Cow Clicker</a></h3>
+	<h3><a href="Games/rps">Rock Paper Scissors</a></h3>
+    </span>
+    <span class="tool">
+    	<h2><u>Tools</u></h2>
+	<h3><a href="Tools/RandomColor">Random Color Picker</a></h3>
+	<h3><a href="Tools/TastyDogs">Tastiest Dogs</a></h3>
+    </span>
+	  
+    <script>
+			document.addEventListener('keydown', function(event) {
+				if(event.keyCode == 66) {
+					window.location.href = "https://zontoon.github.io/Secret/Dancing";
+				}
+			});
+		</script>
+  </body>
+</html>

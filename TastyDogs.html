@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tastiest Dogs</title>
+    <link rel="icon" type="image/png" href="Assets/icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+    
+    <style>
+      html {
+        font-family: "Orbitron", sans-serif;
+        text-align: center;
+        font-size: 23px;
+        background-color: #858585;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <h1>Top 10 Tastiest Dogs</h1>
+    <p id="a">1. dog</p>
+    <p id="b">2. dog</p>
+    <p id="c">3. dog</p>
+    <p id="d">4. dog</p>
+    <p id="e">5. dog</p>
+    <p id="f">6. dog</p>      
+    <p id="g">7. dog</p>
+    <p id="h">8. dog</p>
+    <p id="i">9. dog</p>
+    <p id="j">10. dog</p>
+    
+    <script>
+      var id1 = document.getElementById("a");
+      var id2 = document.getElementById("b");
+      var id3 = document.getElementById("c");
+      var id4 = document.getElementById("d");
+      var id5 = document.getElementById("e");
+      var id6 = document.getElementById("f");
+      var id7 = document.getElementById("g");
+      var id8 = document.getElementById("h");
+      var id9 = document.getElementById("i");
+      var id10 = document.getElementById("j");
+      
+      const dogs = [
+        "affenpinscher", "Afghan hound", "Airedale terrier", "Akita", "Alaskan Malamute",
+        "American Staffordshire terrier", "American water spaniel", "Australian cattle dog",
+        "Australian shepherd", "Australian terrier", "basenji", "basset hound", "beagle",
+        "bearded collie", "Bedlington terrier", "Bernese mountain dog", "bichon frise", "black and tan coonhound",
+        "bloodhound", "border collie", "border terrier", "borzoi", "Boston terrier", "bouvier des Flandres",
+        "boxer", "briard", "Brittany", "Brussels griffon", "bull terrier", "bulldog", "bullmastiff", "cairn terrier",
+        "Canaan dog", "Chesapeake Bay retriever", "Chihuahua", "Chinese crested", "Chinese shar-pei", "chow chow",
+        "Clumber spaniel", "cocker spaniel", "collie", "curly-coated retriever", "dachshund", "Dalmatian",
+        "Doberman pinscher", "English cocker spaniel", "English setter", "English springer spaniel",
+        "English toy spaniel", "Eskimo dog", "Finnish spitz", "flat-coated retriever", "fox terrier", "foxhound",
+        "French bulldog", "German shepherd", "German shorthaired pointer", "German wirehaired pointer",
+        "golden retriever", "Gordon setter", "Great Dane", "greyhound", "Irish setter", "Irish water spaniel",
+        "Irish wolfhound", "Jack Russell terrier", "Japanese spaniel", "keeshond", "Kerry blue terrier",
+        "komondor", "kuvasz", "Labrador retriever", "Lakeland terrier", "Lhasa apso", "Maltese", "Manchester terrier",
+        "mastiff", "Mexican hairless", "Newfoundland", "Norwegian elkhound", "Norwich terrier", "otterhound",
+        "papillon", "Pekingese", "pointer", "Pomeranian", "poodle", "pug", "puli", "Rhodesian ridgeback", "Rottweiler",
+        "Saint Bernard", "saluki", "Samoyed", "schipperke", "schnauzer", "Scottish deerhound", "Scottish terrier",
+        "Sealyham terrier", "Shetland sheepdog", "shih tzu", "Siberian husky", "silky terrier", "Skye terrier",
+        "Staffordshire bull terrier", "soft-coated wheaten terrier", "Sussex spaniel", "spitz", "Tibetan terrier",
+        "vizsla", "Weimaraner", "Welsh terrier", "West Highland white terrier", "whippet", "Yorkshire terrier"
+      ];
+      
+      function rDog() {
+        var dog = dogs[Math.floor(Math.random()*dogs.length)];
+        return dog;
+      }
+      
+      id1.innerHTML = "1. " + rDog();
+      id2.innerHTML = "2. " + rDog();
+      id3.innerHTML = "3. " + rDog();
+      id4.innerHTML = "4. " + rDog();
+      id5.innerHTML = "5. " + rDog();
+      id6.innerHTML = "6. " + rDog();
+      id7.innerHTML = "7. " + rDog();
+      id8.innerHTML = "8. " + rDog();
+      id9.innerHTML = "9. " + rDog();
+      id10.innerHTML = "10. " + rDog();
+    </script>
+  </body>
+</html>
