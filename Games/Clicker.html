@@ -1,315 +1,408 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Cow Clicker</title>
-		
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
-		<link rel="icon" type="image/png" href="Assets/icon.png">
-		
-		<style>
-			html {
-				background-image: url("https://art.pixilart.com/02aa0790086f91a.png");
-				background-repeat: repeat;
-				font-family: "Orbitron", sans-serif;
-			}
-			
-			h1 {
-				font-size: 60px;
-				margin-top: 0;
-				text-align: center;
-				user-select: none;
-			}
-			
-			.upgrades {
-				font-size: 22px;
-				position: absolute;
-				top: 0;
-				user-select: none;
-			}
-			
-			.upg {
-				font-size: 20px;
-			}
-			
-			.cost {
-				font-size: 15px;
-			}
-			
-			.cow {
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-			}
-		</style>
-	</head>
-	
-	<body>
-		<h1 id="counter">0</h1>
-		
-		<img src="https://i.ibb.co/bJdH0TN/cow.png" class="cow" onclick="clicked()">
-	
-		<div class="upgrades">
-			<h3><u>Upgrades</u></h3>
-			<p id="upg0" class="upg" onclick="upgrade()">Cow Upgrade: 0</p>
-			<p id="cost0" class="cost">Cost: 10</p>
-			
-			<p id="upg1" class="upg" style="visibility:hidden" onclick="clicker1()">Basic Clicker: 0</p>
-			<p id="cost1" class="cost" style="visibility:hidden">Cost: 50</p>
-			
-			<p id="upg2" class="upg" style="visibility:hidden" onclick="clicker2()">Good Clicker: 0</p>
-			<p id="cost2" class="cost" style="visibility:hidden">Cost: 100</p>
-			
-			<p id="upg3" class="upg" style="visibility:hidden" onclick="clicker3()">Better Clicker: 0</p>
-			<p id="cost3" class="cost" style="visibility:hidden">Cost: 200</p>
-			
-			<p id="upg4" class="upg" style="visibility:hidden" onclick="clicker4()">Ultra Clicker: 0</p>
-			<p id="cost4" class="cost" style="visibility:hidden">Cost: 350</p>			
-			
-			<p id="upg5" class="upg" style="visibility:hidden" onclick="clicker5()">Mythical Clicker: 0</p>
-			<p id="cost5" class="cost" style="visibility:hidden">Cost: 500</p>
-			
-			<p id="upg6" class="upg" style="visibility:hidden" onclick="clicker6()">Omega Clicker: 0</p>
-			<p id="cost6" class="cost" style="visibility:hidden">Cost: 1000</p>
-		</div>
-		
-		<script>
-			var clicks = 0;
-			var amount = 1;
-			var width = window.innerWidth;
-			var height = window.innerHeight;
-			var upg0 = 0;
-			var upg1 = 0;
-			var upg2 = 0;
-			var upg3 = 0;
-			var upg4 = 0;
-			var upg5 = 0;
-			var upg6 = 0;
-			var cost0 = 10;
-			var cost1 = 50;
-			var cost2 = 100;
-			var cost3 = 200;
-			var cost4 = 350;
-			var cost5 = 500;
-			var cost6 = 1000;
-			var upg1L = false;
-			var upg2L = false;
-			var upg3L = false;
-			var upg4L = false;
-			var upg5L = false;
-			var upg6L = false;
-			var counter = document.getElementById("counter");
-			var upg0ID = document.getElementById("upg0");
-			var upg1ID = document.getElementById("upg1");
-			var upg2ID = document.getElementById("upg2");
-			var upg3ID = document.getElementById("upg3");
-			var upg4ID = document.getElementById("upg4");
-			var upg5ID = document.getElementById("upg5");
-			var upg6ID = document.getElementById("upg6");
-			var cost0ID = document.getElementById("cost0");
-			var cost1ID = document.getElementById("cost1");
-			var cost2ID = document.getElementById("cost2");
-			var cost3ID = document.getElementById("cost3");
-			var cost4ID = document.getElementById("cost4");
-			var cost5ID = document.getElementById("cost5");
-			var cost6ID = document.getElementById("cost6");
-			var bool1 = false;
-			var bool2 = false;
-			var bool3 = false;
-			var bool4 = false;
-			var bool5 = false;
-			var bool6 = false;
-			
-			function randint(min, max) {
-				return Math.floor(Math.random() * (max-min)) + min;
-			}
-			
-			function randCoords(el) {
-				el.style.position = "absolute";
-				el.style.top = randint(20, height - 20) + "px";
-				el.style.left = randint(20, width - 20) + "px";
-			}
-			
-			function createCow() {
-				var img = document.createElement('img');
-				img.src = "https://i.ibb.co/bJdH0TN/cow.png";
-				randCoords(img);
-				img.height = 9;
-				img.width = 15;
-				document.body.appendChild(img);
-			}
-			
-			function unlock() {
-				if (clicks >= 50) {
-					upg1L = true;
-					upg1ID.style.visibility = "visible";
-					cost1ID.style.visibility = "visible";
-					if (clicks >= 100) {
-						upg2L = true;
-						upg2ID.style.visibility = "visible";
-						cost2ID.style.visibility = "visible";
-						if (clicks >= 200) {
-							upg3L = true;
-							upg3ID.style.visibility = "visible";
-							cost3ID.style.visibility = "visible";
-							if(clicks >= 350) {
-								upg4L = true;
-								upg4ID.style.visibility = "visible";
-								cost4ID.style.visibility = "visible";
-								if(clicks >= 500) {
-									upg5L = true;
-									upg5ID.style.visibility = "visible";
-									cost5ID.style.visibility = "visible";
-									if(clicks >= 1000) {
-										upg6L = true;
-										upg6ID.style.visibility = "visible";
-										cost6ID.style.visibility = "visible";
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			
-			function clicked() {
-				clicks += amount;
-				updac();
-				unlock();
-				if((clicks % 5) == 0) {
-					createCow();
-				}
-			}
-			
-			function upgrade() {
-				if (clicks >= cost0) {
-					amount++;
-					upg0++;
-					clicks -= cost0;
-					cost0 += 5;
-					upg0ID.innerHTML = "Cow Upgrade: " + upg0;
-					cost0ID.innerHTML = "Cost: " + cost0;
-					updac();
-				}
-			}
-			
-			function clicker1() {
-				if (upg1L == true) {
-					if (clicks >= cost1) {
-						upg1++;
-						clicks -= cost1;
-						cost1 += 5;
-						upg1ID.innerHTML = "Basic Clicker: " + upg1;
-						cost1ID.innerHTML = "Cost: " + cost1;
-						updac();
-						if(bool1 == false) {
-							bool1 = true;
-							setInterval(function(){clicks+=(1*upg1);updac();}, 5000);
-						}
-					}
-				}
-			}
-			
-			function clicker2() {
-				if (upg2L == true) {
-					if (clicks >= cost2) {
-						upg2++;
-						clicks -= cost2;
-						cost2 += 10;
-						upg2ID.innerHTML = "Good Clicker: " + upg2;
-						cost2ID.innerHTML = "Cost: " + cost2;
-						updac();
-						if(bool2 == false) {
-							bool2 = true;
-							setInterval(function(){clicks+=(1*upg2);updac();}, 2500);
-						}
-					}
-				}
-			}
-			
-			function clicker3() {
-				if (upg3L == true) {
-					if (clicks >= cost3) {
-						upg3++;
-						clicks -= cost3;
-						cost3 += 20;
-						upg3ID.innerHTML = "Better Clicker: " + upg3;
-						cost3ID.innerHTML = "Cost: " + cost3;
-						updac();
-						if(bool3 == false) {
-							bool3 = true;
-							setInterval(function(){clicks+=(1*upg3);updac();}, 1500);
-						}
-					}
-				}
-			}
-			
-			function clicker4() {
-				if (upg4L == true) {
-					if (clicks >= cost4) {
-						upg4++;
-						clicks -= cost4;
-						cost4 += 100;
-						upg4ID.innerHTML = "Ultra Clicker: " + upg4;
-						cost4ID.innerHTML = "Cost: " + cost4;
-						updac();
-						if(bool4 == false) {
-							bool4 = true;
-							setInterval(function(){clicks+=(1*upg4);updac();}, 1000);
-						}
-					}
-				}
-			}
-			
-			function clicker5() {
-				if (upg5L == true) {
-					if (clicks >= cost5) {
-						upg5++;
-						clicks -= cost5;
-						cost5 += 150;
-						upg5ID.innerHTML = "Mythical Clicker: " + upg5;
-						cost5ID.innerHTML = "Cost: " + cost5;
-						updac();
-						if(bool5 == false) {
-							bool5 = true;
-							setInterval(function(){clicks+=(1*upg5);updac();}, 800);
-						}
-					}
-				}
-			}
-			
-			function clicker6() {
-				if (upg6L == true) {
-					if (clicks >= cost6) {
-						upg6++;
-						clicks -= cost6;
-						cost6 += 200;
-						upg6ID.innerHTML = "Omega Clicker: " + upg6;
-						cost6ID.innerHTML = "Cost: " + cost6;
-						updac();
-						if(bool6 == false) {
-							bool6 = true;
-							setInterval(function(){clicks+=(1*upg6);updac();}, 500);
-						}
-					}
-				}
-			}
-			
-			function updac() {
-				counter.innerHTML = clicks;
-			}
-			
-			document.addEventListener('keydown', function(event) {
-				if(event.keyCode == 80) {
-					let ans = prompt("Code?");
-					if(ans == "Zontoon") {
-						let add = prompt("How many clicks?");
-						if(add != null) {
-							clicks += parseInt(add);
-							updac();
-						}
-					}
-				}
-			});
-		</script>
-	</body>
+  <head>
+    <title>Cow Clicker</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+    <link rel="icon" type="image/png" href="Assets/icon.png">
+
+    <style>
+      html {
+        background-image: url("https://art.pixilart.com/02aa0790086f91a.png");
+        background-repeat: repeat;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      h1 {
+        font-size: 60px;
+        margin-top: 0;
+        text-align: center;
+        user-select: none;
+      }
+
+      .upgrades {
+        font-size: 22px;
+        position: absolute;
+        top: 0;
+        user-select: none;
+      }
+
+      .upg {
+        font-size: 20px;
+      }
+
+      .cost {
+        font-size: 15px;
+      }
+
+      .cow {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .reset {
+        position: absolute;
+        bottom: 3%;
+        right: 3%;
+        background-color: forestgreen;
+        border: none;
+        color: white;
+        padding: 12px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="counter">0</h1>
+
+    <img src="https://i.ibb.co/bJdH0TN/cow.png" class="cow" onclick="clicked()">
+
+    <div class="upgrades">
+            <h3><u>Upgrades</u></h3>
+            <p id="upg0" class="upg" onclick="upgrade()">Cow Upgrade: 0</p>
+            <p id="cost0" class="cost">Cost: 10</p>
+
+            <p id="upg1" class="upg" style="visibility:hidden" onclick="clicker1()">Basic Clicker: 0</p>
+            <p id="cost1" class="cost" style="visibility:hidden">Cost: 50</p>
+
+            <p id="upg2" class="upg" style="visibility:hidden" onclick="clicker2()">Good Clicker: 0</p>
+            <p id="cost2" class="cost" style="visibility:hidden">Cost: 100</p>
+
+            <p id="upg3" class="upg" style="visibility:hidden" onclick="clicker3()">Better Clicker: 0</p>
+            <p id="cost3" class="cost" style="visibility:hidden">Cost: 200</p>
+
+            <p id="upg4" class="upg" style="visibility:hidden" onclick="clicker4()">Ultra Clicker: 0</p>
+            <p id="cost4" class="cost" style="visibility:hidden">Cost: 350</p>
+
+            <p id="upg5" class="upg" style="visibility:hidden" onclick="clicker5()">Mythical Clicker: 0</p>
+            <p id="cost5" class="cost" style="visibility:hidden">Cost: 500</p>
+
+            <p id="upg6" class="upg" style="visibility:hidden" onclick="clicker6()">Omega Clicker: 0</p>
+            <p id="cost6" class="cost" style="visibility:hidden">Cost: 1000</p>
+    </div>
+
+    <button class="reset" onclick="storageClear()">Reset</button>
+
+    <script>
+      var clicks = 0;
+      var amount = 1;
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var upg0 = 0;
+      var upg1 = 0;
+      var upg2 = 0;
+      var upg3 = 0;
+      var upg4 = 0;
+      var upg5 = 0;
+      var upg6 = 0;
+      var cost0 = 10;
+      var cost1 = 50;
+      var cost2 = 100;
+      var cost3 = 200;
+      var cost4 = 350;
+      var cost5 = 500;
+      var cost6 = 1000;
+      var upg1L = 0;
+      var upg2L = 0;
+      var upg3L = 0;
+      var upg4L = 0;
+      var upg5L = 0;
+      var upg6L = 0;
+      var counter = document.getElementById("counter");
+      var upg0ID = document.getElementById("upg0");
+      var upg1ID = document.getElementById("upg1");
+      var upg2ID = document.getElementById("upg2");
+      var upg3ID = document.getElementById("upg3");
+      var upg4ID = document.getElementById("upg4");
+      var upg5ID = document.getElementById("upg5");
+      var upg6ID = document.getElementById("upg6");
+      var cost0ID = document.getElementById("cost0");
+      var cost1ID = document.getElementById("cost1");
+      var cost2ID = document.getElementById("cost2");
+      var cost3ID = document.getElementById("cost3");
+      var cost4ID = document.getElementById("cost4");
+      var cost5ID = document.getElementById("cost5");
+      var cost6ID = document.getElementById("cost6");
+
+      function save() {
+        localStorage.setItem('cost0s', cost0);
+        localStorage.setItem('cost1s', cost1);
+        localStorage.setItem('cost2s', cost2);
+        localStorage.setItem('cost3s', cost3);
+        localStorage.setItem('cost4s', cost4);
+        localStorage.setItem('cost5s', cost5);
+        localStorage.setItem('cost6s', cost6);
+        localStorage.setItem('upg0s', upg0);
+        localStorage.setItem('upg1s', upg1);
+        localStorage.setItem('upg2s', upg2);
+        localStorage.setItem('upg3s', upg3);
+        localStorage.setItem('upg4s', upg4);
+        localStorage.setItem('upg5s', upg5);
+        localStorage.setItem('upg6s', upg6);
+        localStorage.setItem('amounts', amount);
+        localStorage.setItem('clickss', clicks);
+        localStorage.setItem('upg1Ls', upg1L);
+        localStorage.setItem('upg2Ls', upg2L);
+        localStorage.setItem('upg3Ls', upg3L);
+        localStorage.setItem('upg4Ls', upg4L);
+        localStorage.setItem('upg5Ls', upg5L);
+        localStorage.setItem('upg6Ls', upg6L);
+        //return null;
+      }
+
+      function load() {
+        cost0 = parseInt(localStorage.getItem('cost0s'));
+        cost1 = parseInt(localStorage.getItem('cost1s'));
+        cost2 = parseInt(localStorage.getItem('cost2s'));
+        cost3 = parseInt(localStorage.getItem('cost3s'));
+        cost4 = parseInt(localStorage.getItem('cost4s'));
+        cost5 = parseInt(localStorage.getItem('cost5s'));
+        cost6 = parseInt(localStorage.getItem('cost6s'));
+        upg0 = parseInt(localStorage.getItem('upg0s'));
+        upg1 = parseInt(localStorage.getItem('upg1s'));
+        upg2 = parseInt(localStorage.getItem('upg2s'));
+        upg3 = parseInt(localStorage.getItem('upg3s'));
+        upg4 = parseInt(localStorage.getItem('upg4s'));
+        upg5 = parseInt(localStorage.getItem('upg5s'));
+        upg6 = parseInt(localStorage.getItem('upg6s'));
+        amount = parseInt(localStorage.getItem('amounts'));
+        clicks = parseInt(localStorage.getItem('clickss'));
+        upg1L = parseInt(localStorage.getItem('upg1Ls'));
+        upg2L = parseInt(localStorage.getItem('upg2Ls'));
+        upg3L = parseInt(localStorage.getItem('upg3Ls'));
+        upg4L = parseInt(localStorage.getItem('upg4Ls'));
+        upg5L = parseInt(localStorage.getItem('upg5Ls'));
+        upg6L = parseInt(localStorage.getItem('upg6Ls'));
+        updac();
+        //return null;
+      }
+
+      function randint(min, max) {
+        return Math.floor(Math.random() * (max-min)) + min;
+      }
+
+      function randCoords(el) {
+        el.style.position = "absolute";
+        el.style.top = randint(20, height - 20) + "px";
+        el.style.left = randint(20, width - 20) + "px";
+      }
+
+      function createCow() {
+        var img = document.createElement('img');
+        img.src = "https://i.ibb.co/bJdH0TN/cow.png";
+        randCoords(img);
+        img.height = 9;
+        img.width = 15;
+        document.body.appendChild(img);
+      }
+
+      function unlock() {
+        if (clicks >= 50) {
+          upg1L = 10;
+          upg1ID.style.visibility = "visible";
+          cost1ID.style.visibility = "visible";
+          if (clicks >= 100) {
+            upg2L = 10;
+            upg2ID.style.visibility = "visible";
+            cost2ID.style.visibility = "visible";
+            if (clicks >= 200) {
+              upg3L = 10;
+              upg3ID.style.visibility = "visible";
+              cost3ID.style.visibility = "visible";
+              if(clicks >= 350) {
+                upg4L = 10;
+                upg4ID.style.visibility = "visible";
+                cost4ID.style.visibility = "visible";
+                if(clicks >= 500) {
+                  upg5L = 10;
+                  upg5ID.style.visibility = "visible";
+                  cost5ID.style.visibility = "visible";
+                  if(clicks >= 1000) {
+                    upg6L = 10;
+                    upg6ID.style.visibility = "visible";
+                    cost6ID.style.visibility = "visible";
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      function clicked() {
+        clicks += amount;
+        updac();
+        unlock();
+        if((clicks % 5) == 0) {
+          createCow();
+        }
+      }
+
+      function upgrade() {
+        if (clicks >= cost0) {
+          amount++;
+          upg0++;
+          clicks -= cost0;
+          cost0 += 5;
+          updac();
+        }
+      }
+
+      function clicker1() {
+        if (upg1L > 0) {
+          if (clicks >= cost1) {
+            upg1++;
+            clicks -= cost1;
+            cost1 += 5;
+            updac();
+            if(upg1 > 0) {
+              setInterval(function(){clicks+=(1*upg1);updac();}, 5000);
+            }
+          }
+        }
+      }
+
+      function clicker2() {
+        if (upg2L > 0) {
+          if (clicks >= cost2) {
+            upg2++;
+            clicks -= cost2;
+            cost2 += 10;
+            updac();
+            if(upg2 > 0) {
+              setInterval(function(){clicks+=(1*upg2);updac();}, 2500);
+            }
+          }
+        }
+      }
+
+      function clicker3() {
+        if (upg3L > 0) {
+          if (clicks >= cost3) {
+            upg3++;
+            clicks -= cost3;
+            cost3 += 20;
+            updac();
+            if(upg3 > 0) {
+              setInterval(function(){clicks+=(1*upg3);updac();}, 1500);
+            }
+          }
+        }
+      }
+
+      function clicker4() {
+        if (upg4L > 0) {
+          if (clicks >= cost4) {
+            upg4++;
+            clicks -= cost4;
+            cost4 += 100;
+            updac();
+            if(upg4 > 0) {
+              setInterval(function(){clicks+=(1*upg4);updac();}, 1000);
+            }
+          }
+        }
+      }
+
+      function clicker5() {
+        if (upg5L > 0) {
+          if (clicks >= cost5) {
+            upg5++;
+            clicks -= cost5;
+            cost5 += 150;
+            updac();
+            if(upg5 > 0) {
+              setInterval(function(){clicks+=(1*upg5);updac();}, 800);
+            }
+          }
+        }
+      }
+
+      function clicker6() {
+        if (upg6L > 0) {
+          if (clicks >= cost6) {
+            upg6++;
+            clicks -= cost6;
+            cost6 += 200;
+            updac();
+            if(upg6 > 0) {
+              setInterval(function(){clicks+=(1*upg6);updac();}, 500);
+            }
+          }
+        }
+      }
+
+      function updac() {
+        counter.innerHTML = clicks;
+        upg0ID.innerHTML = "Cow Upgrade: " + upg0;
+        cost0ID.innerHTML = "Cost: " + cost0;
+        upg1ID.innerHTML = "Basic Clicker: " + upg1;
+        cost1ID.innerHTML = "Cost: " + cost1;
+        upg2ID.innerHTML = "Good Clicker: " + upg2;
+        cost2ID.innerHTML = "Cost: " + cost2;
+        upg3ID.innerHTML = "Better Clicker: " + upg3;
+        cost3ID.innerHTML = "Cost: " + cost3;
+        upg4ID.innerHTML = "Ultra Clicker: " + upg4;
+        cost4ID.innerHTML = "Cost: " + cost4;
+        upg5ID.innerHTML = "Mythical Clicker: " + upg5;
+        cost5ID.innerHTML = "Cost: " + cost5;
+        upg6ID.innerHTML = "Omega Clicker: " + upg6;
+        cost6ID.innerHTML = "Cost: " + cost6;
+        save();
+      }
+
+      function storageClear() {
+        let ans = prompt("Are you sure? Y/N");
+        if(ans == "Y") {
+          localStorage.clear();
+          clicks = 0;
+          amount = 1;
+          width = window.innerWidth;
+          height = window.innerHeight;
+          upg0 = 0;
+          upg1 = 0;
+          upg2 = 0;
+          upg3 = 0;
+          upg4 = 0;
+          upg5 = 0;
+          upg6 = 0;
+          cost0 = 10;
+          cost1 = 50;
+          cost2 = 100;
+          cost3 = 200;
+          cost4 = 350;
+          cost5 = 500;
+          cost6 = 1000;
+          upg1L = 0;
+          upg2L = 0;
+          upg3L = 0;
+          upg4L = 0;
+          upg5L = 0;
+          upg6L = 0;
+          updac();
+        }
+        else {
+          alert("Cancelled");
+        }
+      }
+
+      document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 80) {
+                    let ans = prompt("Code?");
+                    if(ans == "Zontoon") {
+                        let add = prompt("How many clicks?");
+                        if(add != null) {
+                            clicks += parseInt(add);
+                            updac();
+                        }
+                    }
+                }
+            });
+
+      window.onload = load();
+      </script>
+  </body>
 </html>
