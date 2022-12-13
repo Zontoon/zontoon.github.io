@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/2WyTTWN/icon.png">
+        <title>Speed Test</title>
+
+        <style>
+            html {
+                user-select: none;
+                background-color: #e6e67e;
+            }
+
+            button {
+                border: none;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                padding: 60px 60px;
+            }
+            
+            .buttons {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            #timer {
+                text-align: center;
+                visibility: hidden;
+            }
+
+            #stats {
+                font-size: 40px;
+                text-align: center;
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="timer">0</h1>
+
+        <div class="buttons">
+            <button id="b1" onclick="setTime(10)">10 seconds</button>
+            <button id="b2" onclick="setTime(20)">20 seconds</button>
+            <button id="b3" onclick="setTime(30)">30 seconds</button>
+        </div>
+        <div id="stats">
+            <h3 id="clicks"></h3>
+            <h3 id="timeper"></h3>
+        </div>
+
+        <div id="circles"></div>
+
+        <script>
+            var time = 0;
+            var oldTime = 0;
+            var clicks = -1;
+            const b1 = document.getElementById("b1");
+            const b2 = document.getElementById("b2");
+            const b3 = document.getElementById("b3");
+            const timer = document.getElementById("timer");
+            const stat1 = document.getElementById("clicks");
+            const stat2 = document.getElementById("timeper");
+            const spawned = document.getElementById("circles");
+
+            function setTime(option) {
+                time = option;
+                oldTime = option;
+                b1.removeAttribute("onclick");
+                b2.removeAttribute("onclick");
+                b3.removeAttribute("onclick");
+                timer.style.visibility = "visible";
+                timer.innerHTML = time;
+                b1.style.visibility = "hidden";
+                b1.removeAttribute("onclick");
+                b2.style.visibility = "hidden";
+                b2.removeAttribute("onclick");
+                b3.style.visibility = "hidden";
+                b3.removeAttribute("onclick");
+                play();
+            }
+
+            function play() {
+                var counter = setInterval(countTimer, 1000);
+                spawn();
+            }
+
+            function randint(min, max) {
+                return Math.floor(Math.random() * (max-min)) + min;
+            }
+
+            function spawn() {
+                if(timer.innerHTML != "Times Up!") {
+                    clicks++;
+                    var el = document.createElement('div');
+                    el.style.position = "absolute";
+                    el.id = "circle" + clicks;
+                    el.style.top = randint(10, 90) + "%";
+                    el.style.left = randint(5, 95) + "%";
+                    el.style.height = "40px";
+                    el.style.width = "40px";
+                    el.style.backgroundColor = "#000000";
+                    el.style.borderRadius = "50%";
+                    el.setAttribute("onclick", "spawn()");
+                    spawned.appendChild(el);
+                }
+            }
+
+            function countTimer() {
+                if(time > 0) {
+                    time--;
+                    timer.innerHTML = time;
+                }
+                else if(timer.innerHTML != "Times Up!") {
+                    timer.innerHTML = "Times Up!";
+                    clearInterval(counter);
+                }
+                else {
+                    setTimeout(end, 500);
+                }
+            }
+
+            function end() {
+                let num = oldTime/clicks;
+                num = Math.round((num + Number.EPSILON) * 100) / 100;
+                timer.style.visibility = "hidden";
+                spawned.style.visibility = "hidden";
+                stat1.innerHTML = "Clicks: " + clicks;
+                stat2.innerHTML = "Time Per Click: " + num;
+            }
+        </script>
+    </body>
+</html>
