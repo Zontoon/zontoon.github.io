@@ -33,7 +33,7 @@
         font-size: 15px;
       }
 
-      .cow {
+      #cow {
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -57,30 +57,30 @@
   <body>
     <h1 id="counter">0</h1>
 
-    <img src="https://i.ibb.co/bJdH0TN/cow.png" class="cow" onclick="clicked()">
+    <img src="https://i.ibb.co/bJdH0TN/cow.png" id="cow" onclick="clicked()">
 
     <div class="upgrades">
-            <h3><u>Upgrades</u></h3>
-            <p id="upg0" class="upg" onclick="upgrade()">Milkier Cows: 0</p>
-            <p id="cost0" class="cost">Cost: 15</p>
+      <h3><u>Upgrades</u></h3>
+      <p id="upg0" class="upg" onclick="upgrade()">Milkier Cows: 0</p>
+      <p id="cost0" class="cost">Cost: 15</p>
 
-            <p id="upg1" class="upg" style="visibility:hidden" onclick="clicker1()">Average Milker 0</p>
-            <p id="cost1" class="cost" style="visibility:hidden">Cost: 50</p>
+      <p id="upg1" class="upg" style="visibility:hidden" onclick="clicker1()">Average Milker 0</p>
+      <p id="cost1" class="cost" style="visibility:hidden">Cost: 50</p>
 
-            <p id="upg2" class="upg" style="visibility:hidden" onclick="clicker2()">Good Milker: 0</p>
-            <p id="cost2" class="cost" style="visibility:hidden">Cost: 100</p>
+      <p id="upg2" class="upg" style="visibility:hidden" onclick="clicker2()">Good Milker: 0</p>
+      <p id="cost2" class="cost" style="visibility:hidden">Cost: 100</p>
 
-            <p id="upg3" class="upg" style="visibility:hidden" onclick="clicker3()">Better Milker: 0</p>
-            <p id="cost3" class="cost" style="visibility:hidden">Cost: 250</p>
+      <p id="upg3" class="upg" style="visibility:hidden" onclick="clicker3()">Better Milker: 0</p>
+      <p id="cost3" class="cost" style="visibility:hidden">Cost: 250</p>
 
-            <p id="upg4" class="upg" style="visibility:hidden" onclick="clicker4()">Great Milker: 0</p>
-            <p id="cost4" class="cost" style="visibility:hidden">Cost: 500</p>
+      <p id="upg4" class="upg" style="visibility:hidden" onclick="clicker4()">Great Milker: 0</p>
+      <p id="cost4" class="cost" style="visibility:hidden">Cost: 500</p>
 
-            <p id="upg5" class="upg" style="visibility:hidden" onclick="clicker5()">Super Milker: 0</p>
-            <p id="cost5" class="cost" style="visibility:hidden">Cost: 1000</p>
+      <p id="upg5" class="upg" style="visibility:hidden" onclick="clicker5()">Super Milker: 0</p>
+      <p id="cost5" class="cost" style="visibility:hidden">Cost: 1000</p>
 
-            <p id="upg6" class="upg" style="visibility:hidden" onclick="clicker6()">Godly Milker: 0</p>
-            <p id="cost6" class="cost" style="visibility:hidden">Cost: 2500</p>
+      <p id="upg6" class="upg" style="visibility:hidden" onclick="clicker6()">Godly Milker: 0</p>
+      <p id="cost6" class="cost" style="visibility:hidden">Cost: 2500</p>
     </div>
 
     <button class="reset" onclick="storageClear()">Reset</button>
@@ -125,6 +125,13 @@
       var cost4ID = document.getElementById("cost4");
       var cost5ID = document.getElementById("cost5");
       var cost6ID = document.getElementById("cost6");
+      var cow = document.getElementById("cow");
+      var int1;
+      var int2;
+      var int3;
+      var int4;
+      var int5;
+      var int6;
 
       function save() {
         localStorage.setItem('cost0s', cost0);
@@ -316,15 +323,7 @@
         }
       }
 
-      var int1;
-      var int2;
-      var int3;
-      var int4;
-      var int5;
-      var int6;
-
       function updac() {
-        
         if(upg1 > 0) {
           if(!int1) {
             int1 = setInterval(function(){clicks+=(1*upg1);updac();}, 8000);
@@ -409,19 +408,21 @@
       }
 
       document.addEventListener('keydown', function(event) {
-                if(event.keyCode == 80) {
-                    let ans = prompt("Code?");
-                    if(ans == "Zontoon") {
-                        let add = prompt("How many clicks?");
-                        if(add != null) {
-                            clicks += parseInt(add);
-                            updac();
-                        }
-                    }
-                }
-            });
-
+        if(event.keyCode == 80) {
+          let ans = prompt("Code?");
+          if(ans == "Zontoon") {
+            let add = prompt("How many clicks?");
+            if(add != null) {
+             clicks += parseInt(add);
+            	updac();
+            }
+          }
+          if(ans == "math") {
+            cow.src = "";
+          }
+        }
+      });
       window.onload = load();
-      </script>
+    </script>
   </body>
 </html>
