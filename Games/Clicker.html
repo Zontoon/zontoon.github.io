@@ -62,7 +62,7 @@
     <div class="upgrades">
             <h3><u>Upgrades</u></h3>
             <p id="upg0" class="upg" onclick="upgrade()">Milkier Cows: 0</p>
-            <p id="cost0" class="cost">Cost: 10</p>
+            <p id="cost0" class="cost">Cost: 15</p>
 
             <p id="upg1" class="upg" style="visibility:hidden" onclick="clicker1()">Average Milker 0</p>
             <p id="cost1" class="cost" style="visibility:hidden">Cost: 50</p>
@@ -71,16 +71,16 @@
             <p id="cost2" class="cost" style="visibility:hidden">Cost: 100</p>
 
             <p id="upg3" class="upg" style="visibility:hidden" onclick="clicker3()">Better Milker: 0</p>
-            <p id="cost3" class="cost" style="visibility:hidden">Cost: 200</p>
+            <p id="cost3" class="cost" style="visibility:hidden">Cost: 250</p>
 
             <p id="upg4" class="upg" style="visibility:hidden" onclick="clicker4()">Great Milker: 0</p>
-            <p id="cost4" class="cost" style="visibility:hidden">Cost: 350</p>
+            <p id="cost4" class="cost" style="visibility:hidden">Cost: 500</p>
 
             <p id="upg5" class="upg" style="visibility:hidden" onclick="clicker5()">Super Milker: 0</p>
-            <p id="cost5" class="cost" style="visibility:hidden">Cost: 500</p>
+            <p id="cost5" class="cost" style="visibility:hidden">Cost: 1000</p>
 
             <p id="upg6" class="upg" style="visibility:hidden" onclick="clicker6()">Godly Milker: 0</p>
-            <p id="cost6" class="cost" style="visibility:hidden">Cost: 1000</p>
+            <p id="cost6" class="cost" style="visibility:hidden">Cost: 2500</p>
     </div>
 
     <button class="reset" onclick="storageClear()">Reset</button>
@@ -97,13 +97,13 @@
       var upg4 = 0;
       var upg5 = 0;
       var upg6 = 0;
-      var cost0 = 10;
+      var cost0 = 15;
       var cost1 = 50;
       var cost2 = 100;
-      var cost3 = 200;
-      var cost4 = 350;
-      var cost5 = 500;
-      var cost6 = 1000;
+      var cost3 = 250;
+      var cost4 = 500;
+      var cost5 = 1000;
+      var cost6 = 2500;
       var upg1L = 0;
       var upg2L = 0;
       var upg3L = 0;
@@ -245,7 +245,7 @@
           amount++;
           upg0++;
           clicks -= cost0;
-          cost0 += 5;
+          cost0 += upg0 * 2;
           updac();
         }
       }
@@ -255,11 +255,8 @@
           if (clicks >= cost1) {
             upg1++;
             clicks -= cost1;
-            cost1 += 5;
-            updac();
-            if(upg1 > 0) {
-              setInterval(function(){clicks+=(1*upg1);updac();}, 5000);
-            }
+            cost1 += upg1 * 5;
+            updac();     
           }
         }
       }
@@ -269,11 +266,8 @@
           if (clicks >= cost2) {
             upg2++;
             clicks -= cost2;
-            cost2 += 10;
+            cost2 += upg2 * 10;
             updac();
-            if(upg2 > 0) {
-              setInterval(function(){clicks+=(1*upg2);updac();}, 2500);
-            }
           }
         }
       }
@@ -283,11 +277,8 @@
           if (clicks >= cost3) {
             upg3++;
             clicks -= cost3;
-            cost3 += 20;
+            cost3 += upg3 * 25;
             updac();
-            if(upg3 > 0) {
-              setInterval(function(){clicks+=(1*upg3);updac();}, 1500);
-            }
           }
         }
       }
@@ -297,11 +288,8 @@
           if (clicks >= cost4) {
             upg4++;
             clicks -= cost4;
-            cost4 += 100;
+            cost4 += upg4 * 50;
             updac();
-            if(upg4 > 0) {
-              setInterval(function(){clicks+=(1*upg4);updac();}, 1000);
-            }
           }
         }
       }
@@ -311,11 +299,8 @@
           if (clicks >= cost5) {
             upg5++;
             clicks -= cost5;
-            cost5 += 150;
+            cost5 += upg5 * 75;
             updac();
-            if(upg5 > 0) {
-              setInterval(function(){clicks+=(1*upg5);updac();}, 800);
-            }
           }
         }
       }
@@ -325,16 +310,51 @@
           if (clicks >= cost6) {
             upg6++;
             clicks -= cost6;
-            cost6 += 200;
+            cost6 += upg6 * 100;
             updac();
-            if(upg6 > 0) {
-              setInterval(function(){clicks+=(1*upg6);updac();}, 500);
-            }
           }
         }
       }
 
+      var int1;
+      var int2;
+      var int3;
+      var int4;
+      var int5;
+      var int6;
+
       function updac() {
+        
+        if(upg1 > 0) {
+          if(!int1) {
+            int1 = setInterval(function(){clicks+=(1*upg1);updac();}, 8000);
+          }
+        }
+        if(upg2 > 0) {
+          if(!int2) {
+            int2 = setInterval(function(){clicks+=(1*upg2);updac();}, 6000);
+          }
+        }
+        if(upg3 > 0) {
+          if(!int3) {
+            int3 = setInterval(function(){clicks+=(1*upg3);updac();}, 4000);
+          }
+        }
+        if(upg4 > 0) {
+          if(!int4) {
+            int4 = setInterval(function(){clicks+=(1*upg4);updac();}, 2000);
+          }
+        }
+        if(upg5 > 0) {
+          if(!int5) {
+            int5 = setInterval(function(){clicks+=(1*upg5);updac();}, 1250);
+          }
+        }
+        if(upg6 > 0) {
+          if(!int6) {
+            int6 = setInterval(function(){clicks+=(1*upg6);updac();}, 500);
+          }
+        }
         counter.innerHTML = clicks;
         upg0ID.innerHTML = "Milkier Cows: " + upg0;
         cost0ID.innerHTML = "Cost: " + cost0;
