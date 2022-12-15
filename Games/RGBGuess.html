@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RGB Guess</title>
+
+        <style>
+            body {
+                font-family: Courier, monospace;
+                background-color: #e6e67e;
+            }
+
+            button {
+                border: none;
+                font-size: 80px;
+                text-decoration: none;
+                text-align: center;
+                display: inline-block;
+                padding: 50px 80px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <button id="b" onclick="play()">PLAY</button>
+
+        <script>
+            const button = document.getElementById("b");
+
+            function randValue(min, max) {
+                return Math.floor(Math.random() * (max-min)) + min;
+            }
+
+            function play() {
+                let r = randValue(0, 255);
+                let g = randValue(0, 255);
+                let b = randValue(0, 255);
+                document.body.style.background = "rgb(" + r + ", " + g + ", " + b + ")";
+            }
+        </script>
+    </body>
+</html>
