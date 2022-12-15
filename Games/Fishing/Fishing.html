@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fishing</title>
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/2WyTTWN/icon.png">
+    </head>
+    <body>
+        <script>
+            var config = {
+                type: Phaser.AUTO,
+                width: 1300,
+                height: 630,
+                scene: {
+                    preload: preload,
+                    create: create
+                }
+            };
+            var game = new Phaser.Game(config);
+
+            function preload() {
+                this.load.image('bg', 'Assets/bg.png')
+
+                this.load.image('hook1', 'Assets/hook1.png');
+                this.load.image('hook2', 'Assets/hook2.png');
+                this.load.image('hook3', 'Assets/hook3.png');
+                this.load.image('hook4', 'Assets/hook4.png');
+
+                this.load.image('shiny', 'Assets/shiny.png');
+                this.load.image('fish1', 'Assets/fish1.png');
+                this.load.image('fish2', 'Assets/fish2.png');
+                this.load.image('fish3', 'Assets/fish3.png');
+
+                this.load.image('player', 'Assets/player.png');
+
+                this.load.audio('splash', 'Assets/splash.ogg');
+                this.load.audio('money', 'Assets/money.ogg');
+                this.load.audio('music', 'Assets/music.ogg');
+                this.load.audio('click', 'Assets/click.ogg');
+            }
+
+            function create() {
+                this.add.image(0, 0, 'bg');
+                this.add.image(0, 0, 'player');
+                this.add.image(0, 0, 'hook1');
+            }
+        </script>
+    </body>
+</html>
