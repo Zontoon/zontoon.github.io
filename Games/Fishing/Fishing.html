@@ -40,9 +40,12 @@
             }
 
             function create() {
+                var hookX = 0;
+                var hookY = 0;
+
                 this.add.image(0, 0, 'bg');
                 this.add.image(0, 0, 'player');
-                this.add.image(0, 0, 'hook1');
+                this.add.image(hookX, hookY, 'hook1');
             }
         </script>
     </body>
