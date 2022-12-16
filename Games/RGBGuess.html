@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>RGB Guess</title>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/2WyTTWN/icon.png">
 
         <style>
             body {
@@ -33,11 +34,34 @@
                 return Math.floor(Math.random() * (max-min)) + min;
             }
 
+            function test(uValue, value) {
+                if(uValue == value) {
+                    alert("Correct!");
+                }
+                else if(uValue > value - 50 && uValue < value + 50) {
+                    alert("Close!");
+                }
+                else {
+                    alert("Wrong!");
+                }
+            }
+
             function play() {
                 let r = randValue(0, 255);
                 let g = randValue(0, 255);
                 let b = randValue(0, 255);
                 document.body.style.background = "rgb(" + r + ", " + g + ", " + b + ")";
+                button.style.visibility = "hidden";
+                button.removeAttribute("onclick");
+                setTimeout(function() {
+                    let Ur = prompt("Red Value");
+                    test(Ur, r);
+                    let Ug = prompt("Green Value");
+                    test(Ug, g);
+                    let Ub = prompt("Blue Value");
+                    test(Ub, b)}, 1000);
+                button.style.visibility = "visible";
+                button.setAttribute("onclick", "play()");
             }
         </script>
     </body>
