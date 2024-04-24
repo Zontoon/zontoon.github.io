@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="shortcut icon" href="icon.png" type="image/png">
+
+    <style>
+        .button {
+            
+        }
+    </style>
+</head>
+<body>
+
+    <!--Page Customization-->
+    <input type="color" class="button" id="bg" onclick="changeBG()">
+    <input type="color" class="button" id="text">
+
+    <script>
+        addEventListener("click", changeColors);
+
+        function changeColors() {
+            let backgroundColor = document.getElementById("bg").value;
+            document.body.style.backgroundColor = backgroundColor;
+
+            let textColor = document.getElementById("text").value;
+            document.body.style.color = textColor;
+        }
+    </script>
+</body>
+</html>
