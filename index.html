@@ -7,26 +7,43 @@
     <link rel="shortcut icon" href="icon.png" type="image/png">
 
     <style>
-        .button {
+        input {
+            border: 0;
             
+        }
+
+        h1 {
+            font-size: 50px
         }
     </style>
 </head>
 <body>
+    <h1>Home</h1>
 
     <!--Page Customization-->
-    <input type="color" class="button" id="bg" onclick="changeBG()">
-    <input type="color" class="button" id="text">
+    <input type="color" id="bg" onchange="setColors()">
+    <input type="color" id="text" onchange="setColors()">
 
     <script>
-        addEventListener("click", changeColors);
+        let bgInput = document.getElementById("bg");
+        let txtInput = document.getElementById("text");
+        let bodyStyle = document.body.style;
 
-        function changeColors() {
-            let backgroundColor = document.getElementById("bg").value;
-            document.body.style.backgroundColor = backgroundColor;
+        getColors();
 
-            let textColor = document.getElementById("text").value;
-            document.body.style.color = textColor;
+        function setColors() {
+            localStorage.setItem("bgColor", bgInput.value);
+            localStorage.setItem("textColor", txtInput.value);
+            getColors();
+        }
+
+        function getColors() {
+            let bodyColor = localStorage.getItem("bgColor");
+            let textColor = localStorage.getItem("textColor");
+            bodyStyle.backgroundColor = bodyColor;
+            bodyStyle.color = textColor;
+            bgInput.value = bodyColor;
+            txtInput.value = textColor;
         }
     </script>
 </body>
