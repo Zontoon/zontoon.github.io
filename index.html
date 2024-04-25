@@ -18,25 +18,29 @@
 </head>
 <body>
     <h1>Home</h1>
+    <ul>
+        <li><a href="pages/running.html">Running</a></li>
+        <li><a href="pages/clicker.html">Clicker</a></li>
+        <li><a href=""></a></li>
+    </ul>
 
-    <!--Page Customization-->
-    <input type="color" id="bg" onchange="setColors()">
-    <input type="color" id="text" onchange="setColors()">
+    <input type="color" id="bg" onchange="setStyle()" value="#FFFFFF">
+    <input type="color" id="text" onchange="setStyle()" value="#000000">
 
     <script>
         let bgInput = document.getElementById("bg");
         let txtInput = document.getElementById("text");
         let bodyStyle = document.body.style;
 
-        getColors();
+        getStyle();
 
-        function setColors() {
+        function setStyle() {
             localStorage.setItem("bgColor", bgInput.value);
             localStorage.setItem("textColor", txtInput.value);
-            getColors();
+            getStyle();
         }
 
-        function getColors() {
+        function getStyle() {
             let bodyColor = localStorage.getItem("bgColor");
             let textColor = localStorage.getItem("textColor");
             bodyStyle.backgroundColor = bodyColor;
