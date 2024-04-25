@@ -14,6 +14,11 @@
         h1 {
             font-size: 50px;
         }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -24,8 +29,8 @@
         <li><a href=""></a></li>
     </ul>
 
-    <input type="color" id="bg" onchange="setStyle()" value="#FFFFFF">
-    <input type="color" id="text" onchange="setStyle()" value="#000000">
+    <input type="color" id="bg" onchange="setStyle()">
+    <input type="color" id="text" onchange="setStyle()">
 
     <script>
         let bgInput = document.getElementById("bg");
@@ -45,6 +50,7 @@
             let textColor = localStorage.getItem("textColor");
             bodyStyle.backgroundColor = bodyColor;
             bodyStyle.color = textColor;
+            document.a.style.color = textColor;
             bgInput.value = bodyColor;
             txtInput.value = textColor;
         }
