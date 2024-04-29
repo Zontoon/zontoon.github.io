@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clicker</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/clicker.png" type="image/png">
 
     <style>
         body {
@@ -15,7 +15,8 @@
 </head>
 <body>
     <h1 id="clicks">0</h1>
-    <button onclick="clickButton()"></button>
+    <button onclick="clickButton()">CLICK</button>
+    <button onclick="load()">LOAD SAVE</button>
 
     <script>
         const clickDisplay = document.getElementById("clicks");
@@ -23,11 +24,8 @@
         //[Clicks, Amount, ]
         let values = [0, 1];
 
-        load();
-
         function clickButton() {
             values[0] = values[0] + values[1];
-            updateScreen();
             save();
         }
 
@@ -37,13 +35,25 @@
 
         function save() {
             localStorage.setItem("userValues", JSON.stringify(values));
+            updateScreen();
         }
 
         function load() {
-            let storedValues = JSON.parse(localStorage.getItem("userValues"));
-            values = storedValues;
+            values = JSON.parse(localStorage.getItem("userValues"));
             updateScreen();
         }
+
+        document.addEventListener("keydown", (event) => {
+            const keyName = event.key;
+            if(keyName === "p") {
+                let answer = prompt("What's the password?");
+                if(answer == "mcewja") {
+                    let answer = prompt("How many then?");
+                    values[0] = values[0] + parseInt(answer);
+                    save();
+                }
+            }
+        });
     </script>
 </body>
 </html>
