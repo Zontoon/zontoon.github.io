@@ -7,16 +7,43 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <style>
-    
+        body {
+            color: black;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
     <h1 id="clicks">0</h1>
-    <img src="" alt="" onclick="click()">
+    <button onclick="clickButton()"></button>
 
     <script>
-        let clicks = 0;
-        let clickDisplay = document.getElementById("clicks");
+        const clickDisplay = document.getElementById("clicks");
+
+        //[Clicks, Amount, ]
+        let values = [0, 1];
+
+        load();
+
+        function clickButton() {
+            values[0] = values[0] + values[1];
+            updateScreen();
+            save();
+        }
+
+        function updateScreen() {
+            clickDisplay.innerHTML = values[0];
+        }
+
+        function save() {
+            localStorage.setItem("userValues", JSON.stringify(values));
+        }
+
+        function load() {
+            let storedValues = JSON.parse(localStorage.getItem("userValues"));
+            values = storedValues;
+            updateScreen();
+        }
     </script>
 </body>
 </html>
