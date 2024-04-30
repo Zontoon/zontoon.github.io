@@ -14,23 +14,37 @@
     </style>
 </head>
 <body>
-    <h1 id="clicks">0</h1>
+    <h1 id="clicks">$0</h1>
     <button onclick="clickButton()">CLICK</button>
+    <p>UPGRADE</p>
+    <button onclick="upgrade()" id="upgrade">$25</button>
     <button onclick="load()">LOAD SAVE</button>
 
     <script>
         const clickDisplay = document.getElementById("clicks");
+        const upgradePrice = document.getElementById("upgrade");
 
-        //[Clicks, Amount, ]
-        let values = [0, 1];
+        //[Clicks, Amount, $Upgrade, ]
+        let values = [0, 1, 25];
 
         function clickButton() {
             values[0] = values[0] + values[1];
             save();
         }
 
+        function upgrade() {
+            values[1] = values[1] * 2;
+            if(values[2] <= 200) {
+                values[2] = values[2] + 25;
+            } else {
+                values[2] = values[2] * 2;
+            }
+            save();
+        }
+
         function updateScreen() {
-            clickDisplay.innerHTML = values[0];
+            clickDisplay.innerHTML = "$" + values[0];
+            upgradePrice.innerHTML = "$" + values[2];
         }
 
         function save() {
