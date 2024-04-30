@@ -18,6 +18,8 @@
     <button onclick="clickButton()">CLICK</button>
     <p>UPGRADE</p>
     <button onclick="upgrade()" id="upgrade">$25</button>
+    <br>
+    <button onclick="autoclicker()" id="autoclicker">$100</button>
     <br><br>
     <button onclick="load()">LOAD SAVE</button>
     <br>
@@ -26,14 +28,23 @@
     <script>
         const clickDisplay = document.getElementById("clicks");
         const upgradePrice = document.getElementById("upgrade");
+        const autoclickerPrice = document.getElementById("autoclicker");
 
-        //[Clicks, Amount, $Upgrade, NumUpgrades, ]
-        let values = [0, 1, 25, 0];
+        //[clicks, amount, $upgrade, #upgrades, $clickerPrice, #clickers]
+        let values = [0, 1, 25, 0, 100, 0];
         const ogValues = values;
+
+
 
         function clickButton() {
             values[0] = values[0] + values[1];
             save();
+        }
+
+        function updateScreen() {
+            clickDisplay.innerHTML = "$" + values[0];
+            upgradePrice.innerHTML = "$" + values[2];
+            autoclickerPrice.innerHTML = "$" + values[4];
         }
 
         function upgrade() {
@@ -46,14 +57,25 @@
                 } else {
                     values[2] = values[2] + (values[3] * 25) * 2;
                 }
-                
                 save();
             }
         }
 
-        function updateScreen() {
-            clickDisplay.innerHTML = "$" + values[0];
-            upgradePrice.innerHTML = "$" + values[2];
+        function autoclicker() {
+            if(values[0] >= values[4]) {
+                values[5]++;
+                values[0] = values[0] - values[4];
+                values[4] = values[4] + (100 * values[5]);
+                runClicker();
+            }
+        }
+
+        function runClicker() {
+            setInterval(function() {
+                values[0] = values[0] + values[5];
+                updateScreen();
+                save();
+            }, 2500);
         }
 
         function save() {
@@ -64,6 +86,7 @@
         function load() {
             values = JSON.parse(localStorage.getItem("userValues"));
             updateScreen();
+            runClicker();
         }
 
         function deleteData() {
