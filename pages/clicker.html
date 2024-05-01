@@ -11,42 +11,55 @@
             color: black;
             background-color: white;
         }
+
+        button {
+            margin: 1px;
+        }
     </style>
 </head>
 <body>
+    <!-- Main Idea, displays clicks and button for clicking -->
+    <!-- MAKE BUTTON INTO IMAGE, also make things not selectable -->
     <h1 id="clicks">$0</h1>
     <button onclick="clickButton()">CLICK</button>
+
+    <!-- Buttons for upgrading -->
     <p>UPGRADE</p>
     <button onclick="upgrade()" id="upgrade">$25</button>
     <br>
     <button onclick="autoclicker()" id="autoclicker">$100</button>
     <br><br>
+
+    <!-- Buttons for save management -->
     <button onclick="load()">LOAD SAVE</button>
     <br>
-    <button onclick="deleteData()">DELETE SAVE</button>
+    <button onclick="deleteData()">FIX/DELETE SAVE</button>
 
     <script>
+        //links to html elements
         const clickDisplay = document.getElementById("clicks");
         const upgradePrice = document.getElementById("upgrade");
         const autoclickerPrice = document.getElementById("autoclicker");
 
+        //All game values, saved in localStorage
         //[clicks, amount, $upgrade, #upgrades, $clickerPrice, #clickers]
         let values = [0, 1, 25, 0, 100, 0];
         const ogValues = values;
 
-
-
+        //increaes clicks by amount
         function clickButton() {
             values[0] = values[0] + values[1];
             save();
         }
 
+        //updates html elements with new values
         function updateScreen() {
             clickDisplay.innerHTML = "$" + values[0];
             upgradePrice.innerHTML = "$" + values[2];
             autoclickerPrice.innerHTML = "$" + values[4];
         }
 
+        //increases amount, less clicks mo money
         function upgrade() {
             if(values[0] >= values[2]) {
                 values[3]++;
@@ -61,34 +74,41 @@
             }
         }
 
+        //lvl1 autoclicker, runs every 2.5 sec
         function autoclicker() {
             if(values[0] >= values[4]) {
                 values[5]++;
                 values[0] = values[0] - values[4];
                 values[4] = values[4] + (100 * values[5]);
-                runClicker();
+                runClicker(2500);
             }
         }
 
-        function runClicker() {
+        //func for running autoclickers, works with any time value
+        function runClicker(time) {
             setInterval(function() {
                 values[0] = values[0] + values[5];
                 updateScreen();
                 save();
-            }, 2500);
+            }, time);
         }
 
+        //saves game info to localstorage
         function save() {
             localStorage.setItem("userValues", JSON.stringify(values));
             updateScreen();
         }
 
+        //loads game info from localstorage and starts any autoclickers
         function load() {
             values = JSON.parse(localStorage.getItem("userValues"));
             updateScreen();
-            runClicker();
+            if(values[5] > 0) {
+                runClicker(2500);
+            }
         }
 
+        //deletes all data from localstorage
         function deleteData() {
             if(confirm("Are you sure?")) {
                 localStorage.clear();
@@ -97,6 +117,7 @@
             }
         }
 
+        //secret password for infinite money
         document.addEventListener("keydown", (event) => {
             const keyName = event.key;
             if(keyName === "p") {
