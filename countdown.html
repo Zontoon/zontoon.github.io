@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Countdown</title>
+
+        <style>
+            h1 {
+                font-size: 15vw;
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1 id="timer">Loading...</h1>
+
+        <script>
+            const timerText = document.getElementById("timer");
+
+            let r = Math.floor(Math.random() * 128);
+            let g = Math.floor(Math.random() * 128);
+            let b = Math.floor(Math.random() * 128);
+            let x = 255-r;
+            let y = 255-g;
+            let z =255-b;
+
+            setInterval(function() {
+                let currentInSeconds = (1749254400000 - Date.now()) / 1000;
+
+                document.body.style.background = "rgb(" + r + "," + g + "," + b + ")";
+                document.body.style.color = "rgb(" + x + "," + y + "," + z + ")";
+
+                if(currentInSeconds < 60) {
+                    timerText.innerHTML = Math.floor(currentInSeconds) + " seconds left!";
+                } else if(currentInSeconds/60 < 60) {
+                    timerText.innerHTML = Math.floor(currentInSeconds/60) + " minutes left!";
+                } else if(currentInSeconds/60/60 < 24) {
+                    timerText.innerHTML = Math.floor(currentInSeconds/60/60) + " hours left!";
+                } else {
+                    timerText.innerHTML = Math.floor(currentInSeconds/60/60/24) + " days left";
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>
