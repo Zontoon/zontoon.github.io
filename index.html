@@ -31,13 +31,13 @@
                 document.body.style.color = "rgb(" + x + "," + y + "," + z + ")";
 
                 if(currentInSeconds < 60) {
-                    timerText.innerHTML = Math.floor(currentInSeconds) + " seconds until graduation left!";
+                    timerText.innerHTML = Math.floor(currentInSeconds) + " seconds until graduation!";
                 } else if(currentInSeconds/60 < 60) {
-                    timerText.innerHTML = Math.floor(currentInSeconds/60) + " minutes until graduation left!";
+                    timerText.innerHTML = Math.floor(currentInSeconds/60) + " minutes until graduation!";
                 } else if(currentInSeconds/60/60 < 24) {
-                    timerText.innerHTML = Math.floor(currentInSeconds/60/60) + " hours until graduation left!";
+                    timerText.innerHTML = Math.floor(currentInSeconds/60/60) + " hours until graduation!";
                 } else {
-                    timerText.innerHTML = Math.floor(currentInSeconds/60/60/24) + " days until graduation left";
+                    timerText.innerHTML = Math.floor(currentInSeconds/60/60/24) + " days until graduation";
                 }
             }, 1000);
 
